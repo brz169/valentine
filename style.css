@@ -1,0 +1,149 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; font-family: Inter, system-ui, Arial; }
+
+.bg{
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background: radial-gradient(circle at 30% 20%, #ffe8f0, transparent 55%),
+              radial-gradient(circle at 80% 70%, #ffe6c9, transparent 55%),
+              linear-gradient(135deg, #ffeef5, #fff0da);
+}
+
+/* animations */
+@keyframes popIn {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes fadeUp {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+@keyframes floaty {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: .3; }
+  40% { transform: translateY(-6px); opacity: 1; }
+}
+
+/* card */
+.card{
+  width: min(420px, 92vw);
+  background: rgba(255,255,255,0.86);
+  border-radius: 26px;
+  padding: 28px 26px 30px;
+  box-shadow: 0 18px 60px rgba(0,0,0,0.15);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  animation: popIn .45s ease both;
+}
+
+.hidden { display: none; }
+
+.gif-wrap{
+  width: 100%;
+  display: grid;
+  place-items: center;
+  margin-top: 6px;
+  margin-bottom: 12px;
+  animation: fadeUp .5s ease .1s both;
+}
+
+.gif-wrap img{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 20px;
+  animation: floaty 2.2s ease-in-out infinite;
+}
+
+h1{
+  font-family: "Dancing Script", cursive;
+  color: #ff4d6d;
+  font-size: 52px;
+  line-height: 1.05;
+  margin: 10px 0 22px;
+  font-weight: 700;
+  animation: fadeUp .5s ease .18s both;
+}
+
+.btn-row{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  position: relative;
+  padding: 10px 0 0;
+  min-height: 72px; /* IMPORTANT so No can move inside area */
+  animation: fadeUp .5s ease .26s both;
+}
+
+.btn{
+  border: none;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12);
+  user-select: none;
+}
+.btn:hover{ transform: translateY(-1px); filter: brightness(1.02); }
+.btn:active{ transform: scale(0.98); }
+
+.yes{ background: #ff3b57; color: white; }
+
+.no{
+  background: #f3f4f6;
+  color: #111;
+  position: absolute; /* moved by JS */
+  left: 50%;
+  top: 0;
+  transform: translateX(120px);
+}
+
+/* intro */
+.intro-text{
+  margin: 10px 0 8px;
+  color: #444;
+  font-size: 16px;
+  animation: fadeUp .4s ease .18s both;
+}
+.dots{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.dots span{
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #ff4d6d;
+  display: inline-block;
+  animation: dot 1s infinite;
+}
+.dots span:nth-child(2){ animation-delay: .15s; }
+.dots span:nth-child(3){ animation-delay: .3s; }
+
+/* confetti */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 14px;
+  opacity: 0.95;
+  pointer-events: none;
+  animation: fall 1.2s ease forwards;
+}
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(540deg); opacity: 1; }
+}
+
+@media (max-width: 420px){
+  h1{ font-size: 44px; }
+  .gif-wrap img{ width: 180px; height: 180px; }
+}
